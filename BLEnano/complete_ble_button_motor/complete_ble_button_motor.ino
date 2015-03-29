@@ -35,7 +35,7 @@ void setup() {
  pinMode(MOTOR_PIN, OUTPUT);
 
  // set advertised local name and service UUID
- blePeripheral.setLocalName("LEDA");
+ blePeripheral.setLocalName("LUMA");
  blePeripheral.setAdvertisedServiceUuid(ledService.uuid());
 
  // add service and characteristics
