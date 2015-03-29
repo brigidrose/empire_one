@@ -68,7 +68,7 @@ void loop() {
  if (switchCharacteristic.written() || buttonChanged) {
    analogWrite(MOTOR_PIN, 255);
      delay(3000);
-     analogWrite(MOTOR_PIN`, 0);
+     analogWrite(MOTOR_PIN, 0);
    // update LED, either central has written to characteristic or button state has changed
    if (switchCharacteristic.value()) {
      Serial.println(F("LED on"));
