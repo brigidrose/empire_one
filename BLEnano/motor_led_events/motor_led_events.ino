@@ -13,7 +13,7 @@
 //#define MOTOR_PIN  D3
 
 #define BUTTON_PIN  2
-#define MOTOR_PIN  3
+#define MOTOR_PIN  4
 
 //#define BUTTON_PIN  1
 //#define MOTOR_PIN  0
@@ -48,12 +48,77 @@ void setup() {
  blePeripheral.addAttribute(ledService);
  blePeripheral.addAttribute(switchCharacteristic);
  blePeripheral.addAttribute(buttonCharacteristic);
+ 
+// blePeripheral.setEventHandler(BLEConnected, blePeripheralConnectHandler);
+// blePeripheral.setEventHandler(BLEDisconnected, blePeripheralDisconnectHandler);
+//
+//  // assign event handlers for characteristic
+// switchCharacteristic.setEventHandler(BLEWritten, switchCharacteristicWritten);
 
  // begin initialization
  blePeripheral.begin();
 
  Serial.println(F("BLE LED Switch Peripheral"));
 }
+
+
+void blePeripheralConnectHandler(BLECentral& central) {
+  // central connected event handler
+  Serial.print(F("Connected event, central: "));
+  Serial.println(central.address());
+  
+  //blink so we know it's connected
+  digitalWrite(LED_PIN, HIGH);
+  delay(100);
+  digitalWrite(LED_PIN, LOW);
+  delay(50);  
+  digitalWrite(LED_PIN, HIGH);
+  delay(100);  
+  digitalWrite(LED_PIN, LOW);
+}
+
+
+void blePeripheralDisconnectHandler(BLECentral& central) {
+  // central disconnected event handler
+  Serial.print(F("Disconnected event, central: "));
+  Serial.println(central.address());
+  
+    
+  //turn on for half second so we know it's disconnected
+  digitalWrite(LED_PIN, LOW);
+  delay(100);
+  digitalWrite(LED_PIN, HIGH);
+  delay(500);
+  digitalWrite(LED_PIN, LOW);
+}
+
+
+
+
+
+
+void switchCharacteristicWritten(BLECentral& central, BLECharacteristic& characteristic) {
+  // central wrote new value to characteristic, update LED
+  Serial.print(F("Characteristic event, writen: "));
+  
+  //toggle between ON/OFF every time a value is written
+  if (switchCharacteristic.value()==1) {
+    Serial.println(F("Motor on"));
+    analogWrite(MOTOR_PIN, HIGH);
+    digitalWrite(LED_PIN, LOW);
+  } else {
+    Serial.println(F("Motor off"));
+    analogWrite(MOTOR_PIN, LOW);
+    digitalWrite(LED_PIN, HIGH);
+  }
+}
+
+
+
+
+
+
+
 
 void loop() {
  // poll peripheral
@@ -72,18 +137,16 @@ void loop() {
  }
 
  if (switchCharacteristic.written() || buttonChanged) {
-//   analogWrite(MOTOR_PIN, 255);
-//     delay(3000);
-//     analogWrite(MOTOR_PIN, 0);
+   analogWrite(MOTOR_PIN, 255);
+     delay(3000);
+     analogWrite(MOTOR_PIN, 0);
    // update LED, either central has written to characteristic or button state has changed
    if (switchCharacteristic.value()) {
      Serial.println(F("LED on"));
      digitalWrite(LED_PIN, HIGH);
-     analogWrite(MOTOR_PIN, 255);
    } else {
      Serial.println(F("LED off"));
      digitalWrite(LED_PIN, LOW);
-     analogWrite(MOTOR_PIN, 0);
    }
  }
 }
