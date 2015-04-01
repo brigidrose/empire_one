@@ -33,12 +33,55 @@ dev : '',
 val: 0
 };
 
+var onConnectData = {
+
+    id : '',
+    service : '',
+    characteristic : ''
+}
+
+var firebaseRef = {};
+
+
+var firebase = {
+
+    initialize: function(){
+        this.firebaseRef = new Firebase('https://scorching-inferno-6591.firebaseio.com/');
+        this.sendData();
+        },
+
+        sendData: function(){
+
+            this.firebaseRef.set({
+                title: "Hello World!",
+                author: "Firebase",
+                location: {
+                city: "San Francisco",
+                state: "California",
+                zip: 94103
+                }
+                });
+
+            window.setTimeout(this.retrieveData, 2000);
+
+        },
+
+        retrieveData: function(){
+
+                this.firebaseRef.child("location/city").on("value", function(snapshot) {
+                    console.log(snapshot.val()); // Alerts "San Francisco"
+                    });
+        }
+};
+
 
 var app = {
 
     initialize: function() {
         this.bindEvents(); //binding event listeners to DOM in the app
         connectedPage.hidden = true; //hides the HTML elements for the second page
+
+        firebaseRef = new Firebase('https://scorching-inferno-6591.firebaseio.com/');
     },
 
     bindEvents: function() {
@@ -46,11 +89,21 @@ var app = {
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false); //on touch of the Refresh button, runs refreshDeviceList function
         deviceList.addEventListener('touchstart', this.connect, false); //on touch of device list, connect to device
         disconnectButton.addEventListener('touchstart', this.disconnect, false);
-        write.addEventListener('touchstart', this.write, false);
+        writeData.addEventListener('touchstart', this.write, false);
     },
 
     onDeviceReady: function() {
         app.refreshDeviceList();
+
+        /*firebaseRef.set({
+                title: "Hello World!",
+                author: "Luma",
+                location: {
+                city: "NYC",
+                state: "New York",
+                zip: 10003
+                }
+                });*/
     },
 
     refreshDeviceList: function() {
@@ -61,6 +114,8 @@ var app = {
         // scan for devices with the sensor service
         // ble.scan([luma.service], 5, app.onDiscoverDevice, app.onError);
         ble.scan([], 5, app.onDiscoverDevice, app.onError);
+
+        
     },
 
     onDiscoverDevice: function(device) {
@@ -72,6 +127,11 @@ var app = {
         listItem.dataset.deviceId = device.id; //save the device ID in the DOM element
         listItem.setAttribute("class", "result"); //give the element a class for css purposes
         deviceList.appendChild(listItem); //attach it in the HTML element called deviceList
+
+
+        /*firebaseRef.child("location/city").on("value", function(snapshot) {
+            console.log(snapshot.val()); // Alerts "San Francisco"
+        });*/
     },
 
     connect: function(e) {
@@ -101,31 +161,14 @@ var app = {
                         sensorValue.innerHTML = "Waiting for data";
 
                         // //show next page
-                        app.showConnectPage();                
-
-                        app.notification(data);
-
-                /*ble.isConnected(
-                    e.target.dataset.deviceId,
-                    function() {
-                        console.log("Peripheral is connected");
-                        ble.startNotification(e.target.dataset.deviceId, luma.service, luma.buttonCharacteristic, app.onData, app.onError);
-                        // //saves device ID to disconnect button - needed later for disconnect function
-                        disconnectButton.dataset.deviceId = e.target.dataset.deviceId;
-
-                        sensorValue.innerHTML = "Waiting for data";
-
-                        // //show next page
                         app.showConnectPage();
-                    },
-                    function() {
-                        console.log("Peripheral is *not* connected");
-                    }
-                );*/
 
-                // ble.read(e.target.dataset.deviceId, luma.service, luma.buttonCharacteristic, app.onData, app.onError);
-                
 
+                        onConnectData.id = data.id;
+                        onConnectData.service = data.services[0];
+                        onConnectData.characteristic = data.characteristics[0].characteristic;
+                        
+                        app.notification(data);
                 
             };
 
@@ -177,9 +220,11 @@ var app = {
 
     onData: function(buffer) { // data received from Arduino
         // Create typed array from the ArrayBuffer
+        console.log('Buffer data-', buffer);
         var data = new Uint8Array(buffer);
         // get the integer value and set into the UI
         console.log(data);
+        console.log(data[0]);
         sensorValue.innerHTML = data[0];
     },
 
@@ -189,39 +234,63 @@ var app = {
         ble.disconnect(deviceId, app.showStartPage, app.onError);
     },
 
+
     write: function(event) {
-        //gets device ID from disconnect button
+            
+        var success = function() {
+            console.log("success");
+            // resultDiv.innerHTML = resultDiv.innerHTML + "Sent: " + messageInput.value + "<br/>";
+            // resultDiv.scrollTop = resultDiv.scrollHeight;
+        };
+        
+        var failure = function() {
+            console.log("Failed writing data to the nano le");
+        };
+
+        // var message = "\0".charCodeAt(0);
+        // var message = app.stringToBytes(messageInput.value);
+
+        console.log('event.target - ',event.target);
+        console.log('messageInput.value - ',messageInput.value);
+
+        var message = app.stringToBytes("\0");
+        
+        if(messageInput.value == '0'){
+            message = app.stringToBytes("\0");
+        }
+        else if(messageInput.value == '1'){
+            message = app.stringToBytes("\x01");
+        }
+        else{
+            
+            message = app.stringToBytes("\0");
+        }
+        // var message = app.stringToBytes("\0");
+        console.log('message - ',message);
         var deviceId = event.target.dataset.deviceId;
-        console.log(event);
-        console.log(event.target.dataset);
-        console.log(event.target.dataset.deviceId);
+        console.log('deviceId - ',deviceId);
 
+        var reverse = new Uint8Array(message);
+            console.log('reverse buffer string');
+            console.log(reverse);
 
+            console.log('data.id - ',onConnectData.id);
+            console.log('data.services - ',onConnectData.service);
+            console.log('data.characteristics[0].characteristic - ',onConnectData.characteristic);
+        // ble.startNotification(data.id, data.services[0], data.characteristics[1].characteristic, app.onData, app.onError);
+        ble.write(onConnectData.id, onConnectData.service, onConnectData.characteristic, message,success,failure);
 
-        console.log('Again');
-        console.log(thisLuma.dev);
-        console.log(thisLuma.ser);
-        console.log(thisLuma.cha);
-
-        if (thisLuma.val == 0) {
-
-            var va = (1).toString();
-            var v = app.stringToBytes(va);
-            ble.write(thisLuma.dev, thisLuma.ser, thisLuma.cha, v, app.onData, app.onError);
-        }
-        else if (thisLuma.val == 1) {
-            var va = (0).toString();
-            var v = app.stringToBytes(va);
-            ble.write(thisLuma.dev, thisLuma.ser, thisLuma.cha, v, app.onData, app.onError);
-        }
         
     },
 
     stringToBytes: function (string) {
+        console.log('String -',string);
    var array = new Uint8Array(string.length);
    for (var i = 0, l = string.length; i < l; i++) {
        array[i] = string.charCodeAt(i);
     }
+    console.log('Array -',array);
+    console.log('Array.buffer -',array.buffer);
     return array.buffer;
     },
 
@@ -241,3 +310,4 @@ var app = {
 };
 
 app.initialize();
+// firebase.initialize();

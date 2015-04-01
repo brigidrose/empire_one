@@ -12,11 +12,11 @@
 //#define BUTTON_PIN  D2
 //#define MOTOR_PIN  D3
 
-#define BUTTON_PIN  2
-#define MOTOR_PIN  3
+#define BUTTON_PIN  3
+#define MOTOR_PIN  2
 
-//#define BUTTON_PIN  1
-//#define MOTOR_PIN  0
+//#define BUTTON_PIN  2
+//#define MOTOR_PIN  3
 
 
 // create peripheral instance, see pinouts above
@@ -79,11 +79,11 @@ void loop() {
    if (switchCharacteristic.value()) {
      Serial.println(F("LED on"));
      digitalWrite(LED_PIN, HIGH);
-     analogWrite(MOTOR_PIN, 255);
+     analogWrite(MOTOR_PIN, 0);
    } else {
      Serial.println(F("LED off"));
      digitalWrite(LED_PIN, LOW);
-     analogWrite(MOTOR_PIN, 0);
+     analogWrite(MOTOR_PIN, 255);
    }
  }
 }
