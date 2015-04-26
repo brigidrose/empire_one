@@ -1,0 +1,209 @@
+.connect-screen {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.connectText{
+
+	margin-top: 20%;
+	margin-left: 38%;
+	margin-right: 38%;
+	text-align: center;
+	border-bottom: 1px solid #4A433A;
+
+	font-size: 1.3em;
+}
+
+.connectBluetooth{
+
+	margin-top: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.connect-screen .lumalogo{
+
+	position: relative;
+	left: 0;
+	top: 0;
+
+	margin-top: 20%;
+
+}
+
+
+.pushDown{
+
+	margin-top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: 1.1em;
+	max-width: 65%;
+}
+
+.hold {
+	/*font:Verdana, Geneva, sans-serif;*/
+	position: absolute;
+	display: block;
+	width: 50%;
+	height: auto;
+	top: 35%;
+	left: 25%;
+	right: 25%;
+	margin: 0 auto;
+	z-index: 3;
+}
+
+.step1{
+	
+	font-family: AvenirNext-Medium;
+	left: 10%;
+	position: relative;
+	margin-top: 24px;
+	margin-left: 10px;
+	margin-right: auto;
+	font-size: 1.1em;
+	/*text-align: center;*/
+
+
+}
+
+
+.step2{
+	
+	font-family: AvenirNext-Medium;
+	left: 10%;
+	position: relative;
+	margin-top: 0px;
+	margin-left: 10px;
+	margin-right: auto;
+	font-size: 1.1em;
+	/*text-align: center;*/
+
+
+}
+
+.step3{
+	font-family: AvenirNext-Medium;
+	left: 10%;
+	position: relative;
+	margin-top: 0px;
+	margin-left: 10px;
+	margin-right: auto;
+	font-size: 1.1em;
+	/*text-align: center;*/
+
+
+}
+
+.step4{
+	font-family: AvenirNext-Medium;
+	
+	left: 10%;
+	position: relative;
+	margin-top: 0px;
+	margin-left: 10px;
+	margin-right: auto;
+	font-size: 1.1em;
+	/*text-align: center;*/
+
+
+}
+
+.step5{
+	font-family: AvenirNext-Medium;
+	left: 10%;
+	top: 30%;
+	position: relative;
+	margin-top: 100px;
+	margin-left: 10px;
+	margin-right: 40px;
+	font-size: 1.1em;
+	/*text-align: center;*/
+
+
+}
+
+.loadingwait{
+
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	left: 45%;
+	top: 20%;
+
+}
+
+.youruniquepin{
+
+	margin-top: 20%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	border-bottom: 1px solid #4A433A;
+
+	font-size: 1.3em;
+}
+
+.withyour{
+	font-family: AvenirNext-Medium;
+	left: 5%;
+	top: 5%;
+	position: relative;
+	margin-top: 0;
+	margin-left: 10px;
+	margin-right: 40px;
+	font-size: 1.1em;
+	text-align: center;
+
+
+}
+
+
+.dont{
+	font-family: AvenirNext-Medium;
+	left: 5%;
+	top: 25%;
+	position: relative;
+	margin-top: 0;
+	margin-left: 10px;
+	margin-right: 40px;
+	font-size: 1.3em;
+	text-align: center;
+	color: #4A433A;
+
+}
+
+
+.group {
+	/*font:Verdana, Geneva, sans-serif;*/
+	position: absolute;
+	display: block;
+	width: 50%;
+	height: auto;
+	top: 25%;
+	left: 25%;
+	right: 25%;
+	margin: 0 auto;
+	z-index: 3;
+}
+
+
+.keyboard {
+	/*font:Verdana, Geneva, sans-serif;*/
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: auto;
+	top: 57%;
+	/*left: 25%;*/
+	/*right: 25%;*/
+	margin: 0 auto;
+	z-index: 3;
+}
