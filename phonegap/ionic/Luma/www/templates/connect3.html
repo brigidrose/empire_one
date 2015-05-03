@@ -1,26 +1,22 @@
 <ion-view view-title="connect3">
-  
+
 
   <div class="connect-screen">
 
-    <p class="{{connect[0].youruniquepin.class}}">{{connect[0].youruniquepin.text}} </p>
-    <p class="{{connect[0].withyour.class}}">{{connect[0].withyour.text}} </p>
+    <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
 
+    <p class="{{connect[0].connect.class}}">{{connect[0].connect.text}} </p>
+
+
+    <div class="loadingwait">
+    <!--ion-spinner icon="dots"  ui-sref="connect3" href="#/connect4"></ion-spinner-->
+    <ion-spinner icon="dots"></ion-spinner
+
+</div>
     
 
-    <img class="{{connect[0].group.class}}" ng-src="{{connect[0].group.img}}" ui-sref="screen" href="#/screen">
 
-    <p class="{{connect[0].dont.class}}">{{connect[0].dont.text}} </p>
-
-    <img class="{{connect[0].keyboard.class}}" ng-src="{{connect[0].keyboard.img}}" ui-sref="screen" href="#/slide/screen">
     
-
-
-    <script>
-
-      console.log('Connect');
-
-    </script>
     
     
   

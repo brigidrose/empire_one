@@ -1,0 +1,43 @@
+<ion-view view-title="location1">
+  
+
+  <div class="location-screen">
+
+    <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
+
+    <p class="{{connect[0].accesstolocation.class}}">{{connect[0].accesstolocation.text}} </p>
+    <p class="{{connect[0].allowluma.class}}">{{connect[0].allowluma.text}} </p>
+
+    
+
+    <!--img class="{{connect[0].group.class}}" ng-src="{{connect[0].group.img}}" ui-sref="screen" href="#/screen"-->
+    <img class="{{connect[0].locationdialogue.class}}" ng-src="{{connect[0].locationdialogue.img}}">
+
+    <p class="{{connect[0].benefits.class}}">{{connect[0].benefits.text}} </p>
+
+    <p class="{{connect[0].receivealerts.class}}">{{connect[0].receivealerts.text}} </p>
+
+    <p class="{{connect[0].bundleimages.class}}">{{connect[0].bundleimages.text}} </p>
+
+
+    <img class="{{connect[0].check1.class}}" ng-src="{{connect[0].check1.img}}">
+
+    <img class="{{connect[0].check2.class}}" ng-src="{{connect[0].check2.img}}">
+
+
+    <button class="button button-block button-large {{connect[0].grantpermission.class}}" ng-click="getLocation()">
+                      
+                      {{connect[0].grantpermission.text}}
+                    
+                    </button>
+
+
+    <!--button class="button button-block button-large {{connect[0].grantpermission.class}}" ui-sref="connect" href="#/">
+                      
+                      {{connect[0].grantpermission.text}}
+                    
+                    </button-->
+
+        
+  
+</ion-view>

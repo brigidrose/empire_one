@@ -1,0 +1,39 @@
+<ion-view view-title="connect4">
+  
+
+  <div class="connect-screen">
+
+    <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
+
+    <p class="{{connect[0].youruniquepin.class}}">{{connect[0].youruniquepin.text}} </p>
+    <p class="{{connect[0].withyour.class}}">{{connect[0].withyour.text}} </p>
+
+    
+
+    <!--img class="{{connect[0].group.class}}" ng-src="{{connect[0].group.img}}" ui-sref="screen" href="#/screen"-->
+    <!--img class="{{connect[0].group.class}}" ng-src="{{connect[0].group.img}}"-->
+
+
+    <label class="item item-input {{connect[0].enterpin.class}}">
+        <span class="input-label">{{connect[0].enterpin.text}}</span>
+        <input type="tel" ng-model="pin" ng-change="onChange(value)">
+    </label>
+
+    <p class="{{connect[0].dont.class}} onclick="window.open('http://www.lumalegacy.com/', '_system', 'location=yes'); return false;"">{{connect[0].dont.text}} </p>
+
+    <!--img class="{{connect[0].keyboard.class}}" ng-src="{{connect[0].keyboard.img}}" ui-sref="screen" href="#/slide/screen"-->
+
+
+    <!--img class="{{connect[0].keyboard.class}}" ng-src="{{connect[0].keyboard.img}}"-->
+    
+
+
+    <script>
+
+      console.log('Connect');
+
+    </script>
+    
+    
+  
+</ion-view>

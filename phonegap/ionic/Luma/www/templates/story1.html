@@ -1,0 +1,31 @@
+<ion-view view-title="story1">
+  
+
+  <div class="story-screen">
+
+    <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
+
+    <p class="{{connect[0].yourfirststory1.class}}">{{connect[0].yourfirststory1.text}} </p>
+    <p class="{{connect[0].namespecialevent.class}}">{{connect[0].namespecialevent.text}} </p>
+
+    
+
+    <label class="item item-input {{connect[0].eventtext.class}}">
+        <span class="input-label">{{connect[0].eventtext.text}}</span>
+        <input type="text" ng-model="StoryName" ng-change="onChange(value)">
+    </label>
+
+
+    <img class="{{connect[0].arrownext.class}}" ng-src="{{connect[0].arrownext.img}}" ng-click="setText()">
+
+    <!--img class="{{connect[0].group.class}}" ng-src="{{connect[0].group.img}}" ui-sref="screen" href="#/screen"-->
+    <!--img class="{{connect[0].storyoval.class}}" ng-src="{{connect[0].storyoval.img}}" ng-click="setText()">
+
+    <img class="{{connect[0].storyarrow.class}}" ng-src="{{connect[0].storyarrow.img}}"-->
+
+    
+
+    
+        
+  
+</ion-view>

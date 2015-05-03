@@ -31,6 +31,12 @@ angular.module('signonSlider.services', [])
     screen4text2: {class:"screen4 text2", text:"unlock on a special date or location"},
 
 
+
+    signin1: {class:"signin1", img:"img/login/Sign-In1.png"},
+    signin2: {class:"signin2", img:"img/login/Sign-In2.png"},
+    signin3: {class:"signin3", img:"img/login/Sign-In3.png"},
+    signin4: {class:"signin4", img:"img/login/Sign-In4.png"},
+
   }];
 
 

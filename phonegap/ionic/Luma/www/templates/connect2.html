@@ -1,20 +1,48 @@
 <ion-view view-title="connect2">
+
+<ion-content>
+<ion-refresher
+       pulling-text="Pull to refresh..."
+       on-refresh="onRefresh()">
+    </ion-refresher>
+
+  <ion-header-bar align-title="left" class="bar-positive">
+
+  <h1 class="title">Choose your Device</h1>
+
+  </ion-header-bar>
+    <ion-list>
+      <!--ion-item class="item-icon-right" ng-repeat="device in devices" type="item-text-wrap" href="#/tab/ble/{{device.id}}"-->
+
+      <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
+
+      <ion-item class="item-icon-right" ng-repeat="device in devices" type="item-text-wrap" href="#/connect3/{{device.id}}">
+        <h2>{{device.name}}</h2>
+        <p>{{device.id}} &nbsp; RSSI: {{device.rssi}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
   
 
-  <div class="connect-screen">
-
-    <p class="{{connect[0].connect.class}}">{{connect[0].connect.text}} </p>
-
-
-    <div class="loadingwait">
-    <ion-spinner icon="dots"  ui-sref="connect3" href="#/connect3"></ion-spinner>
-
-</div>
-    
-
-
-    
-    
-    
+  </ion-content>
+  
   
 </ion-view>
+
+
+<!--ion-view view-title="connect2">
+  <ion-content>
+    <ion-refresher
+       pulling-text="Pull to refresh..."
+       on-refresh="onRefresh()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="device in devices" type="item-text-wrap" href="#/tab/ble/{{device.id}}">
+        <h2>{{device.name}}</h2>
+        <p>{{device.id}} &nbsp; RSSI: {{device.rssi}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view-->
+

@@ -1,7 +1,16 @@
 <ion-view view-title="connect">
+<!--ion-content>
+<ion-refresher
+       pulling-text="Pull to refresh..."
+       on-refresh="onRefresh()">
+    </ion-refresher>
+
+</ion-content-->
   
 
   <div class="connect-screen">
+
+    <a class="button button-icon icon ion-close-round" href="#/slide/screen"></a>
 
     <p class="{{connect[0].connect.class}}">{{connect[0].connect.text}} </p>
     <p class="{{connect[0].connectBluetooth.class}}">{{connect[0].connectBluetooth.text}} </p>
@@ -11,7 +20,17 @@
     <p class="{{connect[0].step3.class}}">{{connect[0].step3.text}} </p>
     <p class="{{connect[0].step4.class}}">{{connect[0].step4.text}} </p>
 
-    <img class="{{connect[0].hold.class}}" ng-src="{{connect[0].hold.img}}" ui-sref="connect2" href="#/connect2">
+    <!--img class="{{connect[0].hold.class}}" ng-src="{{connect[0].hold.img}}" ui-sref="connect2" href="#/connect2"-->
+
+    <img class="{{connect[0].hold.class}}" ng-src="{{connect[0].hold.img}}">
+
+    <!--ion-list>
+      <ion-item class="item-icon-right" ng-repeat="dev in devices" type="item-text-wrap" href="#/tab/ble/{{dev.id}}">
+        <h2>{{dev.name}}</h2>
+        <p>{{dev.id}} &nbsp; RSSI: {{dev.rssi}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list-->
 
     <p class="{{connect[0].step5.class}}">{{connect[0].step5.text}} </p>
     
